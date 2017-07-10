@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     useref = require('gulp-useref'),
     gulpIf = require('gulp-if'),
     del = require('del');
+    critical = require('critical').stream;
 
 gulp.task('clean-docs', function(){
     del.sync('./docs/**/**')
@@ -13,7 +14,7 @@ gulp.task('useref', function(){
     gulp.src('./src/index.html')
         .pipe(useref())
         .pipe(gulpIf('*.js', uglify()))
-        .pipe(gulpIf('*.css',minifyCSS()))
+        // .pipe(gulpIf('*.css',minifyCSS()))
         .pipe(gulp.dest('./docs'))
     gulp.src('./src/projects/*.html')
         .pipe(useref())
@@ -32,6 +33,24 @@ gulp.task('copy-files', function(){
         .pipe(gulp.dest('./docs/assets/img'))
     gulp.src('./src/projects/pizza/assets/img/**/*.+(png|ico|jpg|gif|jpeg)')
         .pipe(gulp.dest('./docs/projects/pizza/assets/img'))
+});
+
+// gulp.task('critical', function () {
+//     critical.generate({
+//         inline: true,
+//         base: 'docs/',
+//         src: 'index.html',
+//         dest: 'docs/index.html',
+//         minify: true,
+//         width: 320,
+//         height: 480
+//     });
+// });
+
+gulp.task('critical', function () {
+    gulp.src('docs/*.html')
+        .pipe(critical({base: 'docs/', inline: true, css: 'docs/css/main.css'}))
+        .pipe(gulp.dest('docs'));
 });
 
 gulp.task('watch', function(){
