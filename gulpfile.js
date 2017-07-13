@@ -36,7 +36,7 @@ gulp.task('useref', function(){
 });
 
 // critical will overwrite .html files in docs
-gulp.task('critical', function () {
+gulp.task('critical', ['useref'], function () {
     critical.generate({
         inline: true,
         base: 'docs/',
