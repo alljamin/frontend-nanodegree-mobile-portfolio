@@ -21,7 +21,7 @@ You can skip the steps straight to the 4th one if you already have Node, Git and
 
 List of optimisations:
 - introduced Gulp build process automation (CSS minification, JS minification, CSS autoprefix, critical path CSS creation, images optimisation, watch process to watch any change in the project and execute previously mentioned tasks sequentially)
-- decreased the number of pizzas generated to fit the screen (not sure why only two show up)
+- decreased the number of pizzas generated to fit the screen
 - added ``will-change: transform; transform: translateZ(0);`` to ``mover`` classs in css
-- Declaring the elem variable (var elem;) in the initialisation of the for-loop will prevent it from being created every time the loop is executed.
+- Declaring the elem variable (var elem;) in the initialisation of the for-loop will prevent it from being created every time the loop is executed
 
